@@ -4,6 +4,10 @@
 sudo apt update
 sudo apt install curl git -y
 
+# set git config
+git config --global user.name "dayan"
+git config --global user.email "eam.dayan@gmail.com"
+
 # install go
 if ! command -v go &> /dev/null
 then 
@@ -14,7 +18,7 @@ then
 	echo "export GOPATH=\$HOME/go" >> ~/.bashrc
 	echo "export PATH=\$PATH:/usr/local/go/bin:\$GOPATH/bin" >> ~/.bashrc
 	source $PWD/.bashrc
-
+	go version
 else 
 	go version
 fi
