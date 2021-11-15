@@ -4,17 +4,17 @@
 sudo apt update
 sudo apt install curl git -y
 
-#ninstall go
+# install go
 if ! command -v go &> /dev/null
 then 
 	curl -O https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz
 	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.2.linux-amd64.tar.gz
-	rm go1.17.2.linux-amd64.tar.gz
+	# rm go1.17.2.linux-amd64.tar.gz
 
 	echo "export GOPATH=\$HOME/go" >> ~/.bashrc
 	echo "export PATH=\$PATH:/usr/local/go/bin:\$GOPATH/bin" >> ~/.bashrc
-	eval "$(cat ~/.bashrc | tail -n +10)"
-	exit
+	source $PWD/.bashrc
+
 else 
 	go version
 fi
@@ -23,7 +23,7 @@ echo "All done"
 
 # install docker and docker-compose
 sudo apt update
-sudo apt install apt-transport-https ca-certificates software-properties-common
+sudo apt install apt-transport-https ca-certificates software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -36,3 +36,4 @@ sudo usermod -aG docker "$(whoami)"
 su - "$(whoami)"
 
 sudo apt install docker-compose -y
+

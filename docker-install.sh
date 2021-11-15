@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 sudo apt update
 sudo apt install apt-transport-https ca-certificates software-properties-common
 
