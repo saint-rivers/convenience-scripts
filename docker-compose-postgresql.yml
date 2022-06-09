@@ -2,13 +2,14 @@ version: '3.1'
 
 volumes:
   pgdata:
-  pgadmin:
+  portainerdb:
 
 services:
 
   db:
     image: postgres:latest
-    restart: unless-stopped
+    restart: always
+    container_name: tools-db
     ports:
       - "5432:5432"
     environment:
@@ -24,15 +25,12 @@ services:
       timeout: 5s
       retries: 5
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+  portainer:
+    image: portainer/portainer:latest
+    restart: always
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainerdb:/data
     ports:
-      - "5050:80"
-    restart: unless-stopped
+      - "9000:9000"
+    container_name: portainer
