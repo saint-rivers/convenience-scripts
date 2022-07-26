@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#sudo apt update && sudo apt upgrade -y
-#sudo apt install vim git curl code telegram-desktop -y
+sudo apt update && sudo apt upgrade -y
+sudo apt install vim git curl telegram-desktop -y
 
 cd $HOME 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
